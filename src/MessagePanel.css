@@ -1,0 +1,40 @@
+.Chat {
+    margin-left: 20px;
+    height: 100%;
+    width: 60%;
+    min-height: 82vh;
+    position: relative;
+  }
+  
+  .ChatHistory::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .ChatHistory {
+    overflow-y: scroll;
+    white-space: nowrap;
+    max-height: 70vh;
+    overflow-anchor: auto;
+  }
+  
+  .ChatBar {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  .ChatBox {
+    width: 80%;
+    min-height: 5vh;
+  }
+
+  ol li{
+    list-style-type: none;
+    border-radius: 25px;
+    max-width: 40%;
+    display: block;
+    clear: both;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  

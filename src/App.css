@@ -40,58 +40,6 @@
   min-height: 82vh;
 }
 
-.FriendsPanel {
-  display: table;
-  float: left;
-  border-right: solid;
-  border-color: black;
-  width: 40%;
-}
-
-.FriendsList {
-  overflow-y: scroll;
-  max-height: 74vh;
-}
-
-.Chat {
-  margin-left: 20px;
-  height: 100%;
-  width: 60%;
-  min-height: 82vh;
-  position: relative;
-}
-
-.ChatHistory {
-  overflow-y: scroll;
-  white-space: nowrap;
-  max-height: 70vh;
-}
-
-.ChatBar {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-
-.ChatBox {
-  width: 80%;
-  min-height: 5vh;
-}
-
-.Friend {
-  background: #fff;
-  border-top: .5px solid #999;
-  border-bottom: .5px solid #999;
-  border-left: none;
-  border-right: none;
-  float: left;
-  text-align: center;
-  outline: none;
-  font-size: 20px;
-  display: table;
-  width: 100%;
-}
-
 h1 {
   margin-top: 0;
   font-size: 22px;
@@ -120,14 +68,4 @@ h5 {
 h6 {
   margin-top: 0;
   font-size: 12px;
-}
-
-ol li{
-  list-style-type: none;
-  border-radius: 25px;
-  max-width: 40%;
-  display: block;
-  clear: both;
-  padding-left: 8px;
-  padding-right: 8px;
 }
