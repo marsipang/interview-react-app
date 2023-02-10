@@ -53,9 +53,6 @@ export default function FriendPanel({selectFriend, selectedFriend, message, setM
                 setMessage(lastMessageForFriendArray[2])
             }
         }
-        // if [0][3]
-        // console.log( === 'unsent')
-        // console.log(lastMessageForFriend);
       }
   
       const handleClick = () => {
