@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { flushSync } from 'react-dom';
 import './FriendPanel.css';
 
-export default function FriendPanel({selectFriend, selectedFriend}) {
+export default function FriendPanel({selectFriend, selectedFriend, message, setMessage, history, setHistory}) {
     const [friends, setFriends] = useState([]);
     const [newFriend, setNewFriend] = useState('');
     const selectedRef = useRef(null);
@@ -37,7 +37,25 @@ export default function FriendPanel({selectFriend, selectedFriend}) {
       }
   
       function OpenChat(friendName) {
+        const lastMessageForFriend = history.filter((messageHistory) => {
+            return messageHistory[0] === friendName
+          }).slice(-1);
+        const friendMessageCount = lastMessageForFriend.length;
+        if (message != ''){
+            const nextHistory = [...history, [selectedFriend, 'me', message, 'unsent']]; //[friend chat is with, who sent message, message, sent status]
+            setHistory(nextHistory);
+            setMessage('');
+        }
         selectFriend(friendName);
+        if (friendMessageCount > 0){
+            const lastMessageForFriendArray = lastMessageForFriend[0];
+            if (lastMessageForFriendArray[3] === 'unsent'){
+                setMessage(lastMessageForFriendArray[2])
+            }
+        }
+        // if [0][3]
+        // console.log( === 'unsent')
+        // console.log(lastMessageForFriend);
       }
   
       const handleClick = () => {

@@ -2,9 +2,7 @@ import React, { useState, useRef } from 'react';
 import { flushSync } from 'react-dom';
 import './MessagePanel.css';
 
-export default function MessagePanel({selectedFriend}) {
-    const [history, setHistory] = useState([]);
-    const [message, setMessage] = useState('');
+export default function MessagePanel({selectedFriend, setMessage, message, history, setHistory}) {
     const listRef = useRef(null);
   
     const handleChange = (event) => {
@@ -13,7 +11,8 @@ export default function MessagePanel({selectedFriend}) {
   
     function saveMessage() {
       if (selectedFriend){
-        const nextHistory = [...history, [selectedFriend, 'me', message], [selectedFriend, selectedFriend, 'hi']]; //[friend chat is with, who sent message, message]
+        
+        const nextHistory = [...history, [selectedFriend, 'me', message, 'sent'], [selectedFriend, selectedFriend, 'hi', 'sent']]; //[friend chat is with, who sent message, message, sent status]
         flushSync(() => {setHistory(nextHistory)});
         listRef.current?.lastElementChild?.scrollIntoView();
       } else {
@@ -22,8 +21,8 @@ export default function MessagePanel({selectedFriend}) {
     }
     
     const messages = history
-    .filter((messageHistory, msgct) => {
-      return messageHistory[0] === selectedFriend 
+    .filter((messageHistory) => {
+      return messageHistory[0] === selectedFriend & messageHistory[3] === 'sent'
     })
     .map((messageHistory, msgct) => {
       const description = messageHistory[2];

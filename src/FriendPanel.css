@@ -13,6 +13,7 @@
   .FriendsList {
     overflow-y: scroll;
     max-height: 74vh;
+    /* height: 100%; */
   }
 
   .Friend {

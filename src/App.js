@@ -6,6 +6,9 @@ import FriendPanel from './FriendPanel.js';
 
 export default function App() {
   const [selectedFriend, selectFriend] = useState(null);
+  const [message, setMessage] = useState('');
+  const [history, setHistory] = useState([]);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -13,8 +16,8 @@ export default function App() {
         <h1 className="App-title">Cognite Chat App</h1>
       </header>
       <div className="Body">
-        <FriendPanel selectFriend={selectFriend} selectedFriend={selectedFriend} />
-        <MessagePanel selectedFriend={selectedFriend} />
+        <FriendPanel selectFriend={selectFriend} selectedFriend={selectedFriend} message={message} setMessage={setMessage} history={history} setHistory={setHistory}/>
+        <MessagePanel selectedFriend={selectedFriend} setMessage={setMessage} message={message} history={history} setHistory={setHistory}/>
       </div>
     </div>
   );
