@@ -30,7 +30,7 @@ export default function FriendPanel({selectFriend, selectedFriend, message, setM
       selectFriend(newFriend);
     }
   
-    const friendList = friends.map((FriendName) => {
+    const friendList = friends.map((friendName) => {
       let selected = false;
       if (FriendName === selectedFriend) {
         selected = true;
