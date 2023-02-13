@@ -16,7 +16,7 @@ export default function MessagePanel({selectedFriend, setMessage, message, histo
     }
 
     const element = document.getElementById('messageList');
-    element.lastElementChild.scrollIntoView();
+    element.lastChild.scrollIntoView();
 
     const messages = history
     .filter((messageHistory) => {
