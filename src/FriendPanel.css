@@ -6,17 +6,17 @@
     width: 40%;
   }
   
-  .FriendsList::-webkit-scrollbar {
+  .friends-list::-webkit-scrollbar {
     display: none;
   }
   
-  .FriendsList {
+  .friends-list {
     overflow-y: scroll;
     max-height: 74vh;
     /* height: 100%; */
   }
 
-  .Friend {
+  .friend {
     background: #fff;
     border-top: .5px solid #999;
     border-bottom: .5px solid #999;

@@ -60,7 +60,7 @@ export default function FriendPanel({selectFriend, selectedFriend, message, setM
       }
   
       return (
-        <button className="Friend" key={FriendName} ref={selected ? selectedRef: null} onClick={handleClick} value={friendName} style={{ backgroundColor: selected ? "lightblue" : "white" }}>
+        <button className="friend" key={friendName} ref={selected ? selectedRef: null} onClick={handleClick} value={friendName} style={{ backgroundColor: selected ? "lightblue" : "white" }}>
           {friendName}
         </button>
       );
@@ -72,13 +72,13 @@ export default function FriendPanel({selectFriend, selectedFriend, message, setM
     };
   
     return (
-      <div className="FriendsPanel">
+      <div className="friends-panel">
         <h3>Friends List</h3>
         <form onSubmit={handleSubmit}>
-          <input className="FriendBox" value={newFriend} onChange={handleChangeFriend} />
-          <button type="submit" className="SendMsg" onClick={addFriend}>Add Friend</button>
+          <input className="friend-box" value={newFriend} onChange={handleChangeFriend} />
+          <button type="submit" className="send-message" onClick={addFriend}>Add Friend</button>
         </form>
-        <div className="FriendsList">{friendList}</div>
+        <div className="friends-list">{friendList}</div>
       </div>
     );
   }
