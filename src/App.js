@@ -16,7 +16,7 @@ export default function App() {
         <h1 className="app-title">Cognite Chat App</h1>
       </header>
       <div className="body">
-        <FriendPanel selectFriend={selectFriend} selectedFriend={selectedFriend} message={message} setMessage={setMessage} history={history} setHistory={setHistory}/>
+        <FriendPanel setSelectedFriend={setSelectedFriend} selectedFriend={selectedFriend} message={message} setMessage={setMessage} history={history} setHistory={setHistory}/>
         <MessagePanel selectedFriend={selectedFriend} setMessage={setMessage} message={message} history={history} setHistory={setHistory}/>
       </div>
     </div>

@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { flushSync } from 'react-dom';
 import './FriendPanel.css';
 
-export default function FriendPanel({selectFriend, selectedFriend, message, setMessage, history, setHistory}) {
+export default function FriendPanel({setSelectedFriend, selectedFriend, message, setMessage, history, setHistory}) {
     const [friends, setFriends] = useState([]);
     const [newFriend, setNewFriend] = useState('');
     const selectedRef = useRef(null);
@@ -13,7 +13,7 @@ export default function FriendPanel({selectFriend, selectedFriend, message, setM
   
     function addFriend() {
       if (friends.includes(newFriend)) {
-        flushSync(() => {selectFriend(newFriend)});
+        flushSync(() => {setSelectedFriend(newFriend)});
         selectedRef.current.scrollIntoView();
         console.log('user already exists');
         console.log(selectedRef.current);
@@ -23,11 +23,11 @@ export default function FriendPanel({selectFriend, selectedFriend, message, setM
         const nextFriends = [...friends, newFriend];
         flushSync(() => {
             setFriends(nextFriends);
-            selectFriend(newFriend);
+            setSelectedFriend(newFriend);
         });
         selectedRef.current.scrollIntoView();
       }
-      selectFriend(newFriend);
+      setSelectedFriend(newFriend);
     }
   
     const friendList = friends.map((friendName) => {
@@ -46,7 +46,7 @@ export default function FriendPanel({selectFriend, selectedFriend, message, setM
             setHistory(nextHistory);
             setMessage('');
         }
-        selectFriend(friendName);
+        setSelectedFriend(friendName);
         if (friendMessageCount > 0){
             const lastMessageForFriendArray = lastMessageForFriend[0];
             if (lastMessageForFriendArray[3] === 'unsent'){
