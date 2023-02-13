@@ -41,7 +41,7 @@ export default function FriendPanel({selectFriend, selectedFriend, message, setM
             return messageHistory[0] === friendName
           }).slice(-1);
         const friendMessageCount = lastMessageForFriend.length;
-        if (message != ''){
+        if (message !== ''){
             const nextHistory = [...history, [selectedFriend, 'me', message, 'unsent']]; //[friend chat is with, who sent message, message, sent status]
             setHistory(nextHistory);
             setMessage('');
