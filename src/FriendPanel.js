@@ -1,11 +1,9 @@
-import React, { useState, useRef } from 'react';
-import { flushSync } from 'react-dom';
+import React, { useState } from 'react';
 import './FriendPanel.css';
 
 export default function FriendPanel({setSelectedFriend, selectedFriend, message, setMessage, history, setHistory}) {
     const [friends, setFriends] = useState([]);
     const [newFriend, setNewFriend] = useState('');
-    const selectedRef = useRef(null);
   
     const handleChangeFriend = (event) => {
       setNewFriend(event.target.value);
@@ -13,21 +11,19 @@ export default function FriendPanel({setSelectedFriend, selectedFriend, message,
   
     function addFriend() {
       if (friends.includes(newFriend)) {
-        flushSync(() => {setSelectedFriend(newFriend)});
-        selectedRef.current.scrollIntoView();
+        setSelectedFriend(newFriend);
+        const element = document.getElementById(newFriend);
+        element.scrollIntoView();
         console.log('user already exists');
-        console.log(selectedRef.current);
       } else if(newFriend === '') {
         console.log('no user entered');
       } else {
         const nextFriends = [...friends, newFriend];
-        flushSync(() => {
-            setFriends(nextFriends);
-            setSelectedFriend(newFriend);
-        });
-        selectedRef.current.scrollIntoView();
+        setFriends(nextFriends);
+        setSelectedFriend(newFriend);
+        const element = document.getElementById(selectedFriend);
+        element.scrollIntoView();
       }
-      setSelectedFriend(newFriend);
     }
   
     const friendList = friends.map((friendName) => {
@@ -60,7 +56,7 @@ export default function FriendPanel({setSelectedFriend, selectedFriend, message,
       }
   
       return (
-        <button className="friend" key={friendName} ref={selected ? selectedRef: null} onClick={handleClick} value={friendName} style={{ backgroundColor: selected ? "lightblue" : "white" }}>
+        <button className="friend" key={friendName} id={friendName} onClick={handleClick} value={friendName} style={{ backgroundColor: selected ? "lightblue" : "white" }}>
           {friendName}
         </button>
       );

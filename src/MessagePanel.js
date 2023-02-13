@@ -1,25 +1,23 @@
-import React, { useState, useRef } from 'react';
-import { flushSync } from 'react-dom';
+import React from 'react';
 import './MessagePanel.css';
 
-export default function MessagePanel({selectedFriend, setMessage, message, history, setHistory}) {
-    const listRef = useRef(null);
-  
+export default function MessagePanel({selectedFriend, setMessage, message, history, setHistory}) {  
     const handleChange = (event) => {
       setMessage(event.target.value);
     };
   
     function saveMessage() {
       if (selectedFriend){
-        
         const nextHistory = [...history, [selectedFriend, 'me', message, 'sent'], [selectedFriend, selectedFriend, 'hi', 'sent']]; //[friend chat is with, who sent message, message, sent status]
-        flushSync(() => {setHistory(nextHistory)});
-        listRef.current?.lastElementChild?.scrollIntoView();
+        setHistory(nextHistory);
       } else {
         console.log('no user selected');
       }
     }
-    
+
+    const element = document.getElementById('messageList');
+    element.lastElementChild.scrollIntoView();
+
     const messages = history
     .filter((messageHistory) => {
       return messageHistory[0] === selectedFriend & messageHistory[3] === 'sent'
@@ -42,7 +40,7 @@ export default function MessagePanel({selectedFriend, setMessage, message, histo
       <div className="chat">
         <h3>Chat</h3>
         <div className="chat-history">
-          <ol ref={listRef}>{messages}</ol>
+          <ol id="messageList">{messages}</ol>
         </div>
         <div className="chat-bar-div">
           <form onSubmit={handleChatSubmit} className="chat-bar">
