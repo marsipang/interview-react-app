@@ -32,7 +32,7 @@ export default function FriendPanel({selectFriend, selectedFriend, message, setM
   
     const friendList = friends.map((friendName) => {
       let selected = false;
-      if (FriendName === selectedFriend) {
+      if (friendName === selectedFriend) {
         selected = true;
       }
   
@@ -56,12 +56,12 @@ export default function FriendPanel({selectFriend, selectedFriend, message, setM
       }
   
       const handleClick = () => {
-        openChat(FriendName);
+        openChat(friendName);
       }
   
       return (
-        <button className="Friend" key={FriendName} ref={selected ? selectedRef: null} onClick={handleClick} value={FriendName} style={{ backgroundColor: selected ? "lightblue" : "white" }}>
-          {FriendName}
+        <button className="Friend" key={FriendName} ref={selected ? selectedRef: null} onClick={handleClick} value={friendName} style={{ backgroundColor: selected ? "lightblue" : "white" }}>
+          {friendName}
         </button>
       );
     });
