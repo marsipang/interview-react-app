@@ -5,7 +5,7 @@ import MessagePanel from './MessagePanel.js';
 import FriendPanel from './FriendPanel.js';
 
 export default function App() {
-  const [selectedFriend, selectFriend] = useState(null);
+  const [selectedFriend, setSelectedFriend] = useState(undefined);
   const [message, setMessage] = useState('');
   const [history, setHistory] = useState([]);
 
