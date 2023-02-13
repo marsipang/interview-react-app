@@ -56,7 +56,7 @@ export default function FriendPanel({selectFriend, selectedFriend, message, setM
       }
   
       const handleClick = () => {
-        OpenChat(FriendName);
+        openChat(FriendName);
       }
   
       return (
