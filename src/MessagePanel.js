@@ -39,15 +39,15 @@ export default function MessagePanel({selectedFriend, setMessage, message, histo
     };
     
     return (
-      <div className="Chat">
+      <div className="chat">
         <h3>Chat</h3>
-        <div className="ChatHistory">
+        <div className="chat-history">
           <ol ref={listRef}>{messages}</ol>
         </div>
-        <div className="ChatBarDiv">
-          <form onSubmit={handleChatSubmit} className="ChatBar">
-            <input className="ChatBox" value={message} onChange={handleChange} />
-            <button className="SendMsg" onClick={saveMessage}>Send</button>
+        <div className="chat-bar-div">
+          <form onSubmit={handleChatSubmit} className="chat-bar">
+            <input className="chat-box" value={message} onChange={handleChange} />
+            <button className="send-message" onClick={saveMessage}>Send</button>
           </form>
         </div>
       </div>
