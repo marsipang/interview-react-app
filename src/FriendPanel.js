@@ -36,7 +36,7 @@ export default function FriendPanel({selectFriend, selectedFriend, message, setM
         selected = true;
       }
   
-      function OpenChat(friendName) {
+      function openChat(friendName) {
         const lastMessageForFriend = history.filter((messageHistory) => {
             return messageHistory[0] === friendName
           }).slice(-1);
