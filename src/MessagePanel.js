@@ -13,10 +13,8 @@ export default function MessagePanel({selectedFriend, setMessage, message, histo
       } else {
         console.log('no user selected');
       }
-    }
 
-    const element = document.getElementById('messageList');
-    element.lastChild.scrollIntoView();
+    }
 
     const messages = history
     .filter((messageHistory) => {
@@ -34,6 +32,8 @@ export default function MessagePanel({selectedFriend, setMessage, message, histo
     const handleChatSubmit = event => {
       event.preventDefault();
       setMessage('');
+      const element = document.getElementById('messageList');
+      element.lastChild.scrollIntoView();
     };
     
     return (
