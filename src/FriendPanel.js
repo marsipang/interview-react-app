@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './FriendPanel.css';
+import { Context, DispatchContext } from './Context.js';
 
-export default function FriendPanel({state, dispatch}) {
+export default function FriendPanel() {
     const [newFriend, setNewFriend] = useState('');
+    const state = useContext(Context);
+    const dispatch = useContext(DispatchContext);
   
     const handleChangeFriend = (event) => {
       setNewFriend(event.target.value);
