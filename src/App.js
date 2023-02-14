@@ -8,26 +8,45 @@ function reducer(state, action) {
   switch (action.type){
     case 'select_friend': {
       return {
-        selectedFriend: action.nextName,
-        friends: state.friends
+        ...state,
+        selectedFriend: action.nextName
       };
     }
     case 'add_friend': {
       return {
+        ...state,
         selectedFriend: action.newFriend,
         friends: [...state.friends, action.newFriend] 
       };
     }
+    case 'save_message_to_history': {
+      return {
+        ...state,
+        history: [...state.history, action.newMessages],
+        message: ''
+      }
+    }
+    case 'save_sent_message_to_history': {
+      return {
+        ...state,
+        history: [...state.history, action.newMessages, [state.selectedFriend, state.selectedFriend, 'hi', 'sent']],
+        message: ''
+      }
+    }
+    case 'set_message': {
+      return {
+        ...state,
+        message: action.newMessage
+      }
+    }
   }
 }
 
-const initialState = { selectedFriend: undefined, friends: [] };
+const initialState = { selectedFriend: undefined, friends: [], history: [], message: '' };
 
 export default function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [selectedFriend, setSelectedFriend] = useState(undefined);
   const [message, setMessage] = useState('');
-  const [history, setHistory] = useState([]);
 
   return (
     <div className="app">
@@ -36,8 +55,8 @@ export default function App() {
         <h1 className="app-title">Cognite Chat App</h1>
       </header>
       <div className="body">
-        <FriendPanel message={message} setMessage={setMessage} history={history} setHistory={setHistory} state={state} dispatch={dispatch} />
-        <MessagePanel selectedFriend={state.selectedFriend} setMessage={setMessage} message={message} history={history} setHistory={setHistory}/>
+        <FriendPanel state={state} dispatch={dispatch} />
+        <MessagePanel selectedFriend={state.selectedFriend} state={state} dispatch={dispatch} />
       </div>
     </div>
   );

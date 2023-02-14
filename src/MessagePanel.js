@@ -1,22 +1,26 @@
 import React from 'react';
 import './MessagePanel.css';
 
-export default function MessagePanel({selectedFriend, setMessage, message, history, setHistory}) {  
+export default function MessagePanel({selectedFriend, state, dispatch}) {  
     const handleChange = (event) => {
-      setMessage(event.target.value);
+      dispatch({
+        type:'set_message',
+        newMessage: event.target.value
+      });
     };
   
     function saveMessage() {
-      if (selectedFriend){
-        const nextHistory = [...history, [selectedFriend, 'me', message, 'sent'], [selectedFriend, selectedFriend, 'hi', 'sent']]; //[friend chat is with, who sent message, message, sent status]
-        setHistory(nextHistory);
+      if (selectedFriend){ 
+        dispatch({
+          type: 'save_sent_message_to_history',
+          newMessages: [selectedFriend, 'me', state.message, 'sent'] //[friend chat is with, who sent message, message, sent status]
+        });
       } else {
         console.log('no user selected');
       }
-
     }
 
-    const messages = history
+    const messages = state.history
     .filter((messageHistory) => {
       return messageHistory[0] === selectedFriend & messageHistory[3] === 'sent'
     })
@@ -31,7 +35,6 @@ export default function MessagePanel({selectedFriend, setMessage, message, histo
   
     const handleChatSubmit = event => {
       event.preventDefault();
-      setMessage('');
       const element = document.getElementById('messageList');
       element.lastChild.scrollIntoView();
     };
@@ -44,7 +47,7 @@ export default function MessagePanel({selectedFriend, setMessage, message, histo
         </div>
         <div className="chat-bar-div">
           <form onSubmit={handleChatSubmit} className="chat-bar">
-            <input className="chat-box" value={message} onChange={handleChange} />
+            <input className="chat-box" value={state.message} onChange={handleChange} />
             <button className="send-message" onClick={saveMessage}>Send</button>
           </form>
         </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './FriendPanel.css';
 
-export default function FriendPanel({message, setMessage, history, setHistory, state, dispatch}) {
+export default function FriendPanel({state, dispatch}) {
     const [newFriend, setNewFriend] = useState('');
   
     const handleChangeFriend = (event) => {
@@ -36,14 +36,15 @@ export default function FriendPanel({message, setMessage, history, setHistory, s
       }
   
       function openChat(friendName) {
-        const lastMessageForFriend = history.filter((messageHistory) => {
+        const lastMessageForFriend = state.history.filter((messageHistory) => {
             return messageHistory[0] === friendName
           }).slice(-1);
         const friendMessageCount = lastMessageForFriend.length;
-        if (message !== ''){
-            const nextHistory = [...history, [state.selectedFriend, 'me', message, 'unsent']]; //[friend chat is with, who sent message, message, sent status]
-            setHistory(nextHistory);
-            setMessage('');
+        if (state.message !== ''){
+            dispatch({
+              type: 'save_message_to_history',
+              newMessages: [state.selectedFriend, 'me', state.message, 'unsent'] //[friend chat is with, who sent message, message, sent status]
+            });
         }
         dispatch({ 
           type: 'select_friend',
@@ -51,7 +52,10 @@ export default function FriendPanel({message, setMessage, history, setHistory, s
         if (friendMessageCount > 0){
             const lastMessageForFriendArray = lastMessageForFriend[0];
             if (lastMessageForFriendArray[3] === 'unsent'){
-                setMessage(lastMessageForFriendArray[2])
+                dispatch({
+                  type:'set_message',
+                  newMessage: lastMessageForFriendArray[2]
+                });
             }
         }
       }
