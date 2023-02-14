@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import './FriendPanel.css';
 
-export default function FriendPanel({setSelectedFriend, selectedFriend, message, setMessage, history, setHistory}) {
-    const [friends, setFriends] = useState([]);
+export default function FriendPanel({message, setMessage, history, setHistory, state, dispatch}) {
     const [newFriend, setNewFriend] = useState('');
   
     const handleChangeFriend = (event) => {
@@ -10,25 +9,29 @@ export default function FriendPanel({setSelectedFriend, selectedFriend, message,
     };
   
     function addFriend() {
-      if (friends.includes(newFriend)) {
-        setSelectedFriend(newFriend);
+      if (state.friends.includes(newFriend)) {
+        dispatch({ 
+          type: 'select_friend',
+          nextName: newFriend 
+        });
         const element = document.getElementById(newFriend);
         element.scrollIntoView();
         console.log('user already exists');
       } else if(newFriend === '') {
         console.log('no user entered');
       } else {
-        const nextFriends = [...friends, newFriend];
-        setFriends(nextFriends);
-        setSelectedFriend(newFriend);
-        const element = document.getElementById(selectedFriend);
+        dispatch({
+          type: 'add_friend',
+          newFriend: newFriend
+        });
+        const element = document.getElementById(state.selectedFriend);
         element.scrollIntoView();
       }
     }
   
-    const friendList = friends.map((friendName) => {
+    const friendList = state.friends.map((friendName) => {
       let selected = false;
-      if (friendName === selectedFriend) {
+      if (friendName === state.selectedFriend) {
         selected = true;
       }
   
@@ -38,11 +41,13 @@ export default function FriendPanel({setSelectedFriend, selectedFriend, message,
           }).slice(-1);
         const friendMessageCount = lastMessageForFriend.length;
         if (message !== ''){
-            const nextHistory = [...history, [selectedFriend, 'me', message, 'unsent']]; //[friend chat is with, who sent message, message, sent status]
+            const nextHistory = [...history, [state.selectedFriend, 'me', message, 'unsent']]; //[friend chat is with, who sent message, message, sent status]
             setHistory(nextHistory);
             setMessage('');
         }
-        setSelectedFriend(friendName);
+        dispatch({ 
+          type: 'select_friend',
+          nextName: friendName });
         if (friendMessageCount > 0){
             const lastMessageForFriendArray = lastMessageForFriend[0];
             if (lastMessageForFriendArray[3] === 'unsent'){
