@@ -1,0 +1,40 @@
+.chat {
+    margin-left: 20px;
+    height: 100%;
+    width: 60%;
+    /* min-height: 82vh; */
+    position: relative;
+  }
+  
+  .chat-history::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .chat-history {
+    overflow-y: scroll;
+    white-space: nowrap;
+    max-height: 70vh;
+    overflow-anchor: auto;
+  }
+  
+  .chat-bar {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+  }
+  
+  .chat-box {
+    width: 80%;
+    min-height: 5vh;
+  }
+
+  ol li{
+    list-style-type: none;
+    border-radius: 25px;
+    max-width: 40%;
+    display: block;
+    clear: both;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  

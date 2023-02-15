@@ -1,0 +1,31 @@
+.friends-panel {
+    display: table;
+    float: left;
+    border-right: solid;
+    border-color: black;
+    width: 40%;
+  }
+  
+  .friends-list::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .friends-list {
+    overflow-y: scroll;
+    max-height: 74vh;
+    /* height: 100%; */
+  }
+
+  .friend {
+    background: #fff;
+    border-top: .5px solid #999;
+    border-bottom: .5px solid #999;
+    border-left: none;
+    border-right: none;
+    float: left;
+    text-align: center;
+    outline: none;
+    font-size: 20px;
+    display: table;
+    width: 100%;
+  }
